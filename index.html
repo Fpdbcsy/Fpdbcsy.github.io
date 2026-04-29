@@ -124,6 +124,32 @@
             color: #222;
         }
 
+        /* 工作室介绍弹窗 */
+        .about-pll-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 700px;
+            padding: 40px;
+            background: #fff;
+            border: 5px solid #171a21;
+            border-radius: 10px;
+            z-index: 10000;
+            font-size: 16px;
+            line-height: 2;
+            color: #222;
+            text-align: center;
+        }
+        .about-pll-modal h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            background: none;
+            padding: 0;
+        }
+
         /* 页脚样式 */
         footer {
             background-color: #171a21;
@@ -220,7 +246,7 @@
     <div class="agree-modal" id="agreeModal">
         <h3 style="text-align:center;margin-bottom:20px;font-size:22px;">Paxx游戏用户协议</h3>
         <p>1.1 您点击同意、注册或实际使用本游戏，即表示您已阅读、理解并同意受本协议全部条款的约束。</p>
-        <p>1.2 若您未满18周岁，请在法定监护人的陪同下阅读本协议，并在监护人同意的前提下使用本游戏。监护人应承担对未成年人行为的监督责任。</p>
+        <p>1.2 若您未满18周岁，请在法定监护人的陪同下阅读本协议，并在监护人同意的前提下使用本游戏。</p>
         <p>1.3 我们可能不时修订本协议，修订后的版本将在游戏内或官网公布。若您继续使用游戏，视为接受修改；如不同意，您应立即停止使用。</p>
 
         <p><strong>二、账号注册与管理</strong></p>
@@ -277,6 +303,15 @@
         <p>12.2 我们未行使或延迟行使本协议下的任何权利，不应被视为对该权利的放弃。</p>
         <p>12.3 本协议条款的标题仅为方便阅读而设，不影响条款的解释。</p>
         <p>12.4 本协议自您同意之日起生效，并取代此前关于本游戏服务的口头或书面约定（若有）。</p>
+    </div>
+
+    <!-- 工作室介绍弹窗 -->
+    <div class="about-pll-modal" id="aboutPllModal">
+        <h3>工作室介绍｜官网简约版</h3>
+        <p>PLL工作室，是一支由三名初中生组成的独立游戏创作小团队。<br>
+怀揣着对游戏与叙事的热爱，我们从零起步，专注打造沉浸式末日生存与剧情探索体验。团队擅长营造真实压抑的校园末日氛围，构建伏笔丰富、逻辑完整的世界观，为玩家带来高代入感、充满悬念的游戏内容。<br>
+从场景设定、剧情编写到世界观搭建，我们用心打磨每一处细节，坚持用纯粹的创作初心，让每一张地图、每一段故事都拥有独属于自己的质感与温度。<br>
+少年热血不止，创作步履不停。未来我们将持续更新篇章内容、拓展世界观剧情，不断完善专属的末日宇宙，持续带给玩家全新的探索与冒险体验。</p>
     </div>
 
     <!-- 正文内容区域 -->
@@ -336,13 +371,13 @@
         </div>
         <div class="footer-col">
             <a href="#">PLL</a>
-            <a href="#">关于 PLL</a>
+            <a onclick="showAboutPll()">关于 PLL</a>
             <a onclick="showJobAlert()">工作机会</a>
         </div>
         <div class="footer-col">
             <a href="#">法律信息</a>
             <a onclick="showRefundAlert()">退款</a>
-            <a onclick="show91()">逆転裁判</a>
+            <a href="https://store.steampowered.com/app/787480/Phoenix_Wright_Ace_Attorney_Trilogy/" target="_blank">逆転裁判</a>
         </div>
         <div class="footer-col">
             <a href="#">更多</a>
@@ -376,11 +411,20 @@
             overlay.style.display = 'block';
         }
 
+        // 关于PLL工作室介绍弹窗
+        function showAboutPll(){
+            const modal = document.getElementById('aboutPllModal');
+            const overlay = document.getElementById('overlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
         // 点击遮罩关闭所有弹窗
         document.getElementById('overlay').onclick = function(){
             document.getElementById('refundAlert').style.display = 'none';
             document.getElementById('jobAlert').style.display = 'none';
             document.getElementById('agreeModal').style.display = 'none';
+            document.getElementById('aboutPllModal').style.display = 'none';
             this.style.display = 'none';
         };
     </script>
