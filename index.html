@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国产生化危机91-paxx</title>
+    <style>
+        /* 全局基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* 页面主体样式 */
+        body {
+            background-image: url('images/9.PNG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e0e0e0;
+            padding: 20px;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            color: #333;
+            min-height: 100vh;
+        }
+        /* 正文内容样式 */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+        }
+        h1, h2, h3, p {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        img {
+            display: block;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 2px solid #fff;
+        }
+        /* 下载按钮样式 */
+        .download-btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 15px 40px;
+            background: red;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #d00000;
+        }
+
+        /* 通用弹窗遮罩 */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
+        }
+
+        /* 退款提示框 */
+        .refund-alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px 50px;
+            background: white;
+            border: 8px solid red;
+            font-size: 36px;
+            font-weight: bold;
+            color: red;
+            z-index: 9999;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        /* 工作机会弹窗 */
+        .job-alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px 60px;
+            background: #fff;
+            border: 6px solid #333;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            z-index: 9999;
+            border-radius: 8px;
+        }
+
+        /* 用户协议弹窗样式 */
+        .agree-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 900px;
+            max-height: 80vh;
+            padding: 30px;
+            background: #fff;
+            border: 5px solid #000;
+            border-radius: 10px;
+            z-index: 10000;
+            overflow-y: auto;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #222;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #171a21;
+            padding: 30px 15%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: #c7d5e0;
+            margin-top: auto;
+        }
+        .footer-left {
+            flex: 1 1 250px;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .steam-icon {
+            width: 64px;
+            height: 64px;
+            background: #66b3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .steam-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: #c7d5e0;
+        }
+        .valve-text {
+            background-color: #c7d5e0;
+            color: #171a21;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 0 12px;
+            border-radius: 2px;
+        }
+        .copyright {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #c7d5e0;
+        }
+        .social-icons {
+            display: flex;
+            gap: 24px;
+        }
+        .social-icons a {
+            color: #c7d5e0;
+            font-size: 36px;
+            text-decoration: none;
+        }
+        .footer-col {
+            flex: 1 1 120px;
+        }
+        .footer-col a {
+            display: block;
+            color: #c7d5e0;
+            text-decoration: none;
+            margin: 12px 0;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .footer-col a:first-child {
+            font-weight: bold;
+            margin-top: 0;
+            font-size: 24px;
+        }
+        .footer-col a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 遮罩 -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 退款弹窗 -->
+    <div class="refund-alert" id="refundAlert">我给你退个蛋！！</div>
+
+    <!-- 工作机会弹窗 -->
+    <div class="job-alert" id="jobAlert">这个工作室你都想进来?</div>
+
+    <!-- 用户协议弹窗 -->
+    <div class="agree-modal" id="agreeModal">
+        <h3 style="text-align:center;margin-bottom:20px;font-size:22px;">Paxx游戏用户协议</h3>
+        <p>1.1 您点击同意、注册或实际使用本游戏，即表示您已阅读、理解并同意受本协议全部条款的约束。</p>
+        <p>1.2 若您未满18周岁，请在法定监护人的陪同下阅读本协议，并在监护人同意的前提下使用本游戏。监护人应承担对未成年人行为的监督责任。</p>
+        <p>1.3 我们可能不时修订本协议，修订后的版本将在游戏内或官网公布。若您继续使用游戏，视为接受修改；如不同意，您应立即停止使用。</p>
+
+        <p><strong>二、账号注册与管理</strong></p>
+        <p>2.1 您承诺在注册时提供真实、准确、完整的个人信息，并在信息变更时及时更新。因信息虚假或未更新导致的后果由您自行承担。</p>
+        <p>2.2 游戏账号的所有权归我们所有，您仅拥有使用权。禁止以任何形式转让、出借、赠与或售卖账号。因私自转让产生的纠纷和损失，我们不承担责任。</p>
+        <p>2.3 您应妥善保管账号及密码，凡通过您账号进行的一切操作均视为您本人的行为。因保管不善导致的被盗、损失等，由您自行负责。</p>
+        <p>2.4 如发现账号遭未经授权使用，您应立即通知我们。我们在合理范围内采取措施，但不保证能完全避免损失。</p>
+
+        <p><strong>三、用户行为规范</strong></p>
+        <p>3.1 您在使用本游戏时，须遵守中华人民共和国法律法规，并承诺不得从事以下行为：<br>
+        (1) 发布或传播违法、反动、色情、暴力、辱骂、歧视、骚扰、虚假信息或其他令人反感的内容；<br>
+        (2) 使用任何外挂、作弊软件、自动化脚本、修改器或其他破坏游戏公平性的工具；<br>
+        (3) 对游戏客户端、服务器进行反向工程、反编译、破解、修改、攻击或利用系统漏洞；<br>
+        (4) 故意利用游戏漏洞（Bug）获取不正当利益，或发现漏洞后不及时向官方报告；<br>
+        (5) 侵害我们或第三方知识产权、名誉权、隐私权等合法权益的任何行为。</p>
+        <p>3.2 如您违反上述规范，我们有权视情节采取包括但不限于警告、限制功能、禁言、封禁账号、删除虚拟物品、终止服务等措施，并保留追究法律责任的权利。</p>
+
+        <p><strong>四、知识产权</strong></p>
+        <p>4.1 游戏内一切内容（包括但不限于程序代码、美术资源、音乐音效、文字、界面设计、商标、图标等）的知识产权归我们或相关权利人所有，受著作权法、商标法等法律保护。</p>
+        <p>4.2 您仅被授予一项有限的、非排他性、不可转让、不可分许可的非商业使用权。未经我们书面许可，严禁对游戏内容进行复制、传播、改编、出租、展览、逆向工程或用于商业目的。</p>
+        <p>4.3 您在游戏中产生的游戏数据、交流信息等，您同意授予我们在全球范围内永久的、免费的、不可撤销的使用权，用于游戏运营与改进。</p>
+
+        <p><strong>五、虚拟物品规则</strong></p>
+        <p>5.1 游戏中的虚拟货币、道具、装备、角色等虚拟物品，其所有权均归我们所有，您仅依据游戏规则享有使用权。</p>
+        <p>5.2 虚拟物品不可兑换现金、转账或在任何官方渠道之外进行交易。除法律另有规定外，我们不会提供回购、退款或现金补偿。</p>
+        <p>5.3 若发生服务终止、重大版本更新或其它合理必要情况，导致虚拟物品全部或部分被清零，我们将提前公告，且在法定许可范围内不因此承担补偿责任。</p>
+
+        <p>6.2 我们承诺不会将您的个人信息出售或非法提供给第三方，但法律法规要求或基于安全、服务必要目的除外。</p>
+
+        <p><strong>七、免责与责任限制</strong></p>
+        <p>7.1 游戏服务按“现状”提供。我们不作任何明示或默示的保证，包括但不限于服务的及时性、安全性、不中断性及完全无误。我们会尽力保证服务稳定，但不对因客观原因导致的临时中断承担责任。</p>
+        <p>7.2 因不可抗力（如自然灾害、战争、政策变化）、系统维护、网络波动、第三方服务故障、计算机病毒等原因造成的服务中断或数据丢失，我们在法律允许的范围内不承担赔偿责任。</p>
+        <p>7.3 在适用法律允许的最大限度内，我们对任何间接、附带、特殊或惩戒性损失（如利润损失、商誉损失等）不负责任。无论因何诉因，我们的累计赔偿总额不超过您在此前六个月内向我们实际支付的总费用（若为免费用户，则不超过合理推断的损害额）。</p>
+
+        <p><strong>八、服务变更、中断与终止</strong></p>
+        <p>8.1 我们有权随时变更、暂停或终止部分或全部游戏服务，并将提前在游戏内或官网发布合理期限的公告。对于已购买的付费服务，我们将依据公告方案进行处理。</p>
+        <p>8.2 若您严重违反本协议或法律法规，我们有权立即终止您的账号并删除相关数据，无需事先通知，且不承担任何责任。</p>
+        <p>8.3 账号自最后一次登录起连续180天未使用的，我们有权回收或删除该账号及其相关数据，且无需另行补偿。</p>
+
+        <p><strong>九、违约与赔偿</strong></p>
+        <p>9.1 您同意保障并维护我们的利益，若因您的违约或违法行为导致我们面临索赔、诉讼或遭受处罚，您应赔偿我们因此支付的全部损失（含合理的律师费、诉讼费）。</p>
+        <p>9.2 我们有权将您的违规行为记入内部信用系统，并与其他平台或执法机构依法共享必要信息。</p>
+
+        <p><strong>十、法律适用与争议解决</strong></p>
+        <p>10.1 本协议的订立、效力、解释、履行及争议解决，均适用中华人民共和国法律。</p>
+        <p>10.2 因本协议引起的一切争议，双方应友好协商解决；协商不成的，任何一方均有权向我们所在地有管辖权的人民法院提起诉讼。</p>
+
+        <p><strong>十一、通知与送达</strong></p>
+        <p>11.1 所有通知我们将通过游戏内公告、官网公告、站内信或您注册时提供的联系方式发送。</p>
+        <p>11.2 通知于发送之日视为已送达。您有义务定期关注上述渠道的信息更新，因您疏于查阅导致的后果自行承担。</p>
+
+        <p><strong>十二、其他</strong></p>
+        <p>12.1 如本协议的任何条款被认定为无效或不可执行，该条款视为可分割，不影响其余条款的效力。</p>
+        <p>12.2 我们未行使或延迟行使本协议下的任何权利，不应被视为对该权利的放弃。</p>
+        <p>12.3 本协议条款的标题仅为方便阅读而设，不影响条款的解释。</p>
+        <p>12.4 本协议自您同意之日起生效，并取代此前关于本游戏服务的口头或书面约定（若有）。</p>
+    </div>
+
+    <!-- 正文内容区域 -->
+    <div class="content">
+        <h1>paxx-国产丧尸游戏巅峰</h1>
+
+        <h2>剧情篇章：爆发初期【黎明前的死寂】</h2>
+        <p>城市沦陷的七天前，潘讯区PA学校的地下实验室突发故障，致命丧尸病毒微量泄露，开启了无声的末日蔓延。
+初期感染者仅表现为低烧乏力、精神萎靡，酷似普通流感，成功隐匿在校园之中。病毒悄然篡改人体机能，令感染者性格呆滞易怒、肢体僵硬失控。
+短短数日，全校师生陆续出现异常症状，深夜频发诡异游荡、低声嘶吼等反常行为。依托校园高密度的集体环境，病毒通过接触、飞沫快速扩散，潜伏感染者数量急剧攀升。
+为掩盖违规实验丑闻、保全学校评级，校方刻意瞒报灾情，将异常统一归为换季流感，强制维持各类集体活动，放任病毒完成小学、初中全校区潜伏感染。
+沦陷前夜的校园死寂诡异，危机已然蓄满。待黎明破晓，这场被层层掩盖的丧尸灾难彻底爆发，让这所市区名校沦为末日的首个血色原点。</p>
+
+        <h2>参考现实背景资料:</h2>
+
+        <h3>paxx是一所现代化省级特色公办初中，坐落于潘讯区，校园布局合理、环境幽雅、绿树常青，是修身求知的理想场所。</h3>
+        <p>1997 年 7 月 2 日在上廓pa二街成立 ；2008 年与pa小学合并为九年一贯制</p>
+        <img src="images/paxx cheng li.jpg" alt="成立文件" width="600">
+
+        <h2>paxx所在地:</h2>
+        <p>北河畔</p>
+        <img src="images/bei jiang he.PNG" alt="北江河畔" width="600">
+        
+        <h2>注：</h2>
+        <p>以上信息皆为虚构，请勿带入现实</p>
+
+        <a href="https://pan.baidu.com/s/1q3JfgSXgW4lef_6pkwoWjg?pwd=7878" 
+           target="_blank" 
+           class="download-btn">
+            ⬇ 下载 Paxx重置版（提取码: 7878）
+        </a>
+    </div>
+
+    <footer>
+        <div class="footer-left">
+            <div class="footer-logo">
+                <div class="steam-icon">Paxx</div>
+                <span class="steam-text">Paxx</span> 
+                <span class="valve-text">PLL</span>
+            </div>
+            <div class="copyright">
+                © 2026  PLL保留所有权利。所有商标均为其在中国及其他国家/地区的各自持有者所有。<br>
+                所有的价格均已包含增值税（如适用）。
+            </div>
+            <div class="social-icons">
+                <a href="#">91</a>
+                <a href="#">78</a>
+                <a href="#">f</a>
+                <a href="#">✕</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <a href="#">Paxx</a> 
+            <a href="#">关于 Paxx</a> 
+            <a onclick="showAgreeModal()">Paxx 用户协议</a>
+        </div>
+        <div class="footer-col">
+            <a href="#">PLL</a>
+            <a href="#">关于 PLL</a>
+            <a onclick="showJobAlert()">工作机会</a>
+        </div>
+        <div class="footer-col">
+            <a href="#">法律信息</a>
+            <a onclick="showRefundAlert()">退款</a>
+            <a onclick="show91()">逆転裁判</a>
+        </div>
+        <div class="footer-col">
+            <a href="#">更多</a>
+            <a href="https://pan.baidu.com/s/1q3JfgSXgW4lef_6pkwoWjg?pwd=7878" target="_blank">下载 Paxx</a> 
+            <a href="https://steamcommunity.com/id/Fpdbcsy/" target="_blank">联系客服</a>
+        </div>
+    </footer>
+
+    <script>
+        // 退款弹窗
+        function showRefundAlert() {
+            const alertBox = document.getElementById('refundAlert');
+            const overlay = document.getElementById('overlay');
+            alertBox.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        // 工作机会弹窗
+        function showJobAlert() {
+            const jobBox = document.getElementById('jobAlert');
+            const overlay = document.getElementById('overlay');
+            jobBox.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        // 用户协议弹窗
+        function showAgreeModal(){
+            const modal = document.getElementById('agreeModal');
+            const overlay = document.getElementById('overlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        // 点击遮罩关闭所有弹窗
+        document.getElementById('overlay').onclick = function(){
+            document.getElementById('refundAlert').style.display = 'none';
+            document.getElementById('jobAlert').style.display = 'none';
+            document.getElementById('agreeModal').style.display = 'none';
+            this.style.display = 'none';
+        };
+    </script>
+</body>
+</html>
