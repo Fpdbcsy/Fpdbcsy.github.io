@@ -13,7 +13,7 @@
         }
         /* 页面主体样式 */
         body {
-            background-image: url('images/9.jpg');
+            background-image: url('images/9.PNG');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -22,6 +22,8 @@
             font-family: "Microsoft YaHei", Arial, sans-serif;
             color: #333;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         /* 正文内容样式 */
         .content {
@@ -53,7 +55,7 @@
             transition: background 0.3s;
         }
         .download-btn:hover {
-            background: #d00000;
+            background: #d0000;
         }
 
         /* 通用弹窗遮罩 */
@@ -150,10 +152,68 @@
             padding: 0;
         }
 
-        /* 页脚样式 */
+        /* 关于PAXX弹窗样式 */
+        .about-paxx-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 700px;
+            padding: 40px;
+            background: #fff;
+            border: 5px solid #171a21;
+            border-radius: 10px;
+            z-index: 10000;
+            font-size: 17px;
+            line-height: 2;
+            color: #222;
+            text-align: center;
+        }
+
+        /* 配置单样式 */
+        .system-requirements {
+            background-color: #e6f7ff;
+            color: #000000;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+        .requirements-column {
+            flex: 1;
+            min-width: 260px;
+        }
+        .requirements-column h3 {
+            background: none;
+            color: #0066aa;
+            padding: 0;
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        .requirements-column p {
+            background: none;
+            color: #000000;
+            padding: 0;
+            margin: 5px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .requirements-note {
+            color: #444;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        /* 页脚样式 - 已修改：全屏铺满 */
         footer {
             background-color: #171a21;
-            padding: 30px 15%;
+            width: 100%;
+            padding: 30px 5%;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -161,6 +221,9 @@
             gap: 20px;
             color: #c7d5e0;
             margin-top: auto;
+            position: relative;
+            left: 0;
+            right: 0;
         }
         .footer-left {
             flex: 1 1 250px;
@@ -300,7 +363,7 @@
 
         <p><strong>十二、其他</strong></p>
         <p>12.1 如本协议的任何条款被认定为无效或不可执行，该条款视为可分割，不影响其余条款的效力。</p>
-        <p>12.2 我们未行使或延迟行使本协议下的任何权利，不应被视为对该权利的放弃。</p>
+        <p>12.2 我们未行使或延迟行使本协议下的任何权利，不应被视为对该权利放弃。</p>
         <p>12.3 本协议条款的标题仅为方便阅读而设，不影响条款的解释。</p>
         <p>12.4 本协议自您同意之日起生效，并取代此前关于本游戏服务的口头或书面约定（若有）。</p>
     </div>
@@ -314,6 +377,12 @@
 少年热血不止，创作步履不停。未来我们将持续更新篇章内容、拓展世界观剧情，不断完善专属的末日宇宙，持续带给玩家全新的探索与冒险体验。</p>
     </div>
 
+    <!-- 关于 Paxx 弹窗 -->
+    <div class="about-paxx-modal" id="aboutPaxxModal">
+        《Paxx》采用极简低多边形美术风格。我们刻意不使用贴图，仅用几何形体与色彩来构建这个末世。主角的方块手、丧尸的异形轮廓、混凝土般的教学楼——这一切都在用最少的元素，营造最直接的恐惧。
+    </div>
+
+    <!-- 正文内容区域 -->
     <div class="content">
         <h1>paxx-国产丧尸游戏巅峰</h1>
 
@@ -321,19 +390,42 @@
         <p>城市沦陷的七天前，潘讯区PA学校的地下实验室突发故障，致命丧尸病毒微量泄露，开启了无声的末日蔓延。
 初期感染者仅表现为低烧乏力、精神萎靡，酷似普通流感，成功隐匿在校园之中。病毒悄然篡改人体机能，令感染者性格呆滞易怒、肢体僵硬失控。
 短短数日，全校师生陆续出现异常症状，深夜频发诡异游荡、低声嘶吼等反常行为。依托校园高密度的集体环境，病毒通过接触、飞沫快速扩散，潜伏感染者数量急剧攀升。
-为掩盖违规实验丑闻、保全学校评级，校方刻意瞒报灾情，将异常统一归为换季流感，强制维持各类集体活动，放任病毒在小学、初中全校区潜伏感染。
+为掩盖违规实验丑闻、保全学校评级，校方刻意瞒报灾情，将异常统一归为换季流感，强制维持各类集体活动，放任病毒完成小学、初中全校区潜伏感染。
 沦陷前夜的校园死寂诡异，危机已然蓄满。待黎明破晓，这场被层层掩盖的丧尸灾难彻底爆发，让这所市区名校沦为末日的首个血色原点。</p>
 
         <h2>参考现实背景资料:</h2>
 
         <h3>paxx是一所现代化省级特色公办初中，坐落于潘讯区，校园布局合理、环境幽雅、绿树常青，是修身求知的理想场所。</h3>
         <p>1997 年 7 月 2 日在上廓pa二街成立 ；2008 年与pa小学合并为九年一贯制</p>
-        <img src="images/paxx cheng li.jpg" alt="成立文件" width="800
-">
+        <img src="images/paxx cheng li.jpg" alt="成立文件" width="600">
 
         <h2>paxx所在地:</h2>
         <p>北河畔</p>
-        <img src="images/bei jiang he.jpg" alt="北江河畔" width="600">
+        <img src="images/bei jiang he.PNG" alt="北江河畔" width="600">
+        
+        <h2>游戏配置要求:</h2>
+        <div class="system-requirements">
+            <div class="requirements-column">
+                <h3>最低配置:</h3>
+                <p>操作系统 *: Windows 7/8/10</p>
+                <p>处理器: Intel Core i5-2300 @ 2.80 GHz, AMD FX 8120 @ 3.1 GHz</p>
+                <p>内存: 4 GB RAM</p>
+                <p>显卡: NVIDIA GT 630 / 650m, AMD Radeon HD6570 or equivalent</p>
+                <p>DIRECTX 版本: 10</p>
+                <p>存储空间: 需要 2 GB 可用空间</p>
+                <p>声卡: 100% DirectX 9.0c compatible sound card</p>
+            </div>
+            <div class="requirements-column">
+                <h3>推荐配置:</h3>
+                <p>操作系统 *: Windows 7/8/10</p>
+                <p>处理器: Intel i7 920 @ 2.7 GHz, AMD Phenom II 945 @ 3.0 GHz</p>
+                <p>内存: 8 GB RAM</p>
+                <p>显卡: NVIDIA GTX 1050</p>
+                <p>DIRECTX 版本: 11</p>
+                <p>存储空间: 需要 2 GB 可用空间</p>
+                <p>声卡: 100% DirectX 9.0c compatible sound card</p>
+            </div>
+        </div>
         
         <h2>注：</h2>
         <p>以上信息皆为虚构，请勿带入现实</p>
@@ -366,7 +458,7 @@
 
         <div class="footer-col">
             <a href="#">Paxx</a> 
-            <a href="#">关于 Paxx</a> 
+            <a onclick="showAboutPaxx()">关于 Paxx</a> 
             <a onclick="showAgreeModal()">Paxx 用户协议</a>
         </div>
         <div class="footer-col">
@@ -381,7 +473,7 @@
         </div>
         <div class="footer-col">
             <a href="#">更多</a>
-            <a href="https://pan.baidu.com/s/1q3JfgSXgW4lef_6pkwoWjg?pwd=7878" target="_blank">下载 Paxx</a> 
+            <a href="https://pan.baidu.com/s/1q3JfgSXgW4lef_6pkwoWjg?pwd=7878"_blank">下载 Paxx</a> 
             <a href="https://steamcommunity.com/id/Fpdbcsy/" target="_blank">联系客服</a>
         </div>
     </footer>
@@ -419,12 +511,21 @@
             overlay.style.display = 'block';
         }
 
+        // 关于 Paxx 弹窗
+        function showAboutPaxx(){
+            const modal = document.getElementById('aboutPaxxModal');
+            const overlay = document.getElementById('overlay');
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
         // 点击遮罩关闭所有弹窗
         document.getElementById('overlay').onclick = function(){
             document.getElementById('refundAlert').style.display = 'none';
             document.getElementById('jobAlert').style.display = 'none';
             document.getElementById('agreeModal').style.display = 'none';
             document.getElementById('aboutPllModal').style.display = 'none';
+            document.getElementById('aboutPaxxModal').style.display = 'none';
             this.style.display = 'none';
         };
     </script>
