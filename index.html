@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>国产生化危机91-paxx</title>
+    <!-- 丧尸主题 favicon，直接嵌入，无需额外文件 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧟</text></svg>">
     <style>
         /* 全局基础样式 */
         * {
@@ -42,10 +44,10 @@
             border-radius: 5px;
             border: 2px solid #fff;
         }
-        /* 内容描述区块 —— 已改为配置单同款颜色 */
+        /* 内容描述区块 —— 配置单同款颜色 */
         .esrb-block {
-            background-color: #e6f7ff; /* 配置单同款背景色 */
-            color: #000000;            /* 配置单同款文字色 */
+            background-color: #e6f7ff;
+            color: #000000;
             padding: 20px;
             border-radius: 5px;
             margin: 20px 0;
@@ -53,7 +55,7 @@
         }
         .esrb-block h3 {
             background: none;
-            color: #0066aa; /* 配置单同款标题色 */
+            color: #0066aa;
             padding: 0;
             margin: 0 0 15px 0;
             font-size: 22px;
@@ -62,7 +64,7 @@
         }
         .esrb-block p {
             background: none;
-            color: #000000; /* 配置单同款文字色 */
+            color: #000000;
             padding: 0;
             margin: 10px 0;
             font-size: 16px;
@@ -114,8 +116,8 @@
             border-radius: 8px;
         }
 
-        /* 工作机会弹窗 */
-        .job-alert {
+        /* 社交账号弹窗 */
+        .social-alert {
             display: none;
             position: fixed;
             top: 50%;
@@ -129,6 +131,14 @@
             color: #333;
             z-index: 9999;
             border-radius: 8px;
+            line-height: 1.8;
+        }
+        .social-alert a {
+            color: #0066aa;
+            text-decoration: none;
+        }
+        .social-alert a:hover {
+            text-decoration: underline;
         }
 
         /* 用户协议弹窗样式 */
@@ -235,7 +245,7 @@
             margin-top: 10px;
         }
 
-        /* 页脚样式 - 已修改：全屏铺满 */
+        /* 页脚样式 */
         footer {
             background-color: #171a21;
             width: 100%;
@@ -328,8 +338,12 @@
     <!-- 退款弹窗 -->
     <div class="refund-alert" id="refundAlert">我给你退个蛋！！</div>
 
-    <!-- 工作机会弹窗 -->
-    <div class="job-alert" id="jobAlert">这个工作室你都想进来?</div>
+    <!-- 社交账号弹窗 -->
+    <div class="social-alert" id="socialAlert">
+P：待定<br>
+LX：待定<br>
+LJZ：<a href="https://space.bilibili.com/1298151244" target="_blank">https://space.bilibili.com/1298151244</a>
+    </div>
 
     <!-- 用户协议弹窗 -->
     <div class="agree-modal" id="agreeModal">
@@ -388,7 +402,7 @@
         <p>11.2 通知于发送之日视为已送达。您有义务定期关注上述渠道的信息更新，因您疏于查阅导致的后果自行承担。</p>
 
         <p><strong>十二、其他</strong></p>
-        <p>12.1 如本协议的任何条款被认定为 invalid or unenforceable, the provision shall be deemed severable and shall not affect the validity and enforceability of any remaining provisions.</p>
+        <p>12.1 如本协议的任何条款被认定为无效或不可执行，该条款视为可分割，不影响其余条款的效力。</p>
         <p>12.2 我们未行使或延迟行使本协议下的任何权利，不应被视为对该权利放弃。</p>
         <p>12.3 本协议条款的标题仅为方便阅读而设，不影响条款的解释。</p>
         <p>12.4 本协议自您同意之日起生效，并取代此前关于本游戏服务的口头或书面约定（若有）。</p>
@@ -453,7 +467,7 @@
             </div>
         </div>
 
-        <!-- 已移到配置单后面 + 改为Paxx + 配置单同款颜色 -->
+        <!-- 成人内容描述 -->
         <div class="esrb-block">
             <h3>成人内容描述</h3>
             <p>开发者对内容描述如下：</p>
@@ -497,7 +511,7 @@
         <div class="footer-col">
             <a href="#">PLL</a>
             <a onclick="showAboutPll()">关于 PLL</a>
-            <a onclick="showJobAlert()">工作机会</a>
+            <a onclick="showSocialAlert()">社交账号</a>
         </div>
         <div class="footer-col">
             <a href="#">法律信息</a>
@@ -520,11 +534,11 @@
             overlay.style.display = 'block';
         }
 
-        // 工作机会弹窗
-        function showJobAlert() {
-            const jobBox = document.getElementById('jobAlert');
+        // 社交账号弹窗
+        function showSocialAlert() {
+            const socialBox = document.getElementById('socialAlert');
             const overlay = document.getElementById('overlay');
-            jobBox.style.display = 'block';
+            socialBox.style.display = 'block';
             overlay.style.display = 'block';
         }
 
@@ -555,7 +569,7 @@
         // 点击遮罩关闭所有弹窗
         document.getElementById('overlay').onclick = function(){
             document.getElementById('refundAlert').style.display = 'none';
-            document.getElementById('jobAlert').style.display = 'none';
+            document.getElementById('socialAlert').style.display = 'none';
             document.getElementById('agreeModal').style.display = 'none';
             document.getElementById('aboutPllModal').style.display = 'none';
             document.getElementById('aboutPaxxModal').style.display = 'none';
